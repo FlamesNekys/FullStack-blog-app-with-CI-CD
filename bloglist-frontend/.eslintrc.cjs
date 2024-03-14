@@ -14,7 +14,7 @@ module.exports = {
     rules: {
         'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
         indent: ['error', 4],
-        'linebreak-style': ['error', 'windows'],
+        'linebreak-style': ['error', 'unix'],
         quotes: ['error', 'single'],
         semi: ['error', 'never'],
         eqeqeq: 'error',
@@ -26,4 +26,4 @@ module.exports = {
         'react/prop-types': 0,
         'no-unused-vars': 0,
     },
-}
+};
