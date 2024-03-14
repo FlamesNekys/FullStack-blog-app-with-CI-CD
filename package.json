@@ -7,7 +7,12 @@
     "dev": "cross-env NODE_ENV=development nodemon index.js",
     "start": "cross-env NODE_ENV=production node index.js",
     "test": "cross-env NODE_ENV=test jest --verbose --runInBand",
-    "start:test": "cross-env NODE_ENV=test node index.js"
+    "start:test": "cross-env NODE_ENV=test node index.js",
+    "inst": "npm ci && cd bloglist-frontend && yarn",
+    "eslint": "cd bloglist-frontend && yarn lint",
+    "build": "cd bloglist-frontend && yarn build",
+    "test-frontend": "cd bloglist-frontend && yarn test",
+    "test:e2e": "cd bloglist-frontend && test:e2e"
   },
   "keywords": [],
   "author": "",
@@ -30,6 +35,7 @@
   },
   "jest": {
     "testEnvironment": "node",
-    "globalTeardown": "./tests/teardown.js"
+    "globalTeardown": "./tests/teardown.js",
+    "modulePathIgnorePatterns": ["<rootDir>/build/", "<rootDir>/bloglist-frontend/"]
   }
 }

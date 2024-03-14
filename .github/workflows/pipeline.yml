@@ -1,0 +1,45 @@
+name: Deployment pipeline
+
+on:
+    push:
+        branches:
+            - main
+    pull_request:
+        branches: [main]
+        types: [opened, synchronize]
+
+jobs:
+    simple_deployment_pipeline:
+        runs-on: ubuntu-20.04
+        steps:
+            - uses: actions/checkout@v4
+            - uses: actions/setup-node@v4
+              with:
+                  node-version: '20'
+            - name: Install dependencies
+              run: npm run inst
+            - name: Check style
+              run: npm run eslint
+            - name: Make build
+              run: npm run build
+            - name: Test backend
+              run: npm run test
+            - name: Test frontend
+              run: npm run test-frontend
+            - name: e2e tests
+              uses: cypress-io/github-action@v5
+              with:
+                  command: npm run test:e2e
+                  start: npm run start
+                  wait-on: http://localhost:3003
+    tag_release:
+        needs: [simple_deployment_pipeline]
+        runs-on: ubuntu-20.04
+        steps:
+            - uses: actions/checkout@v4
+            - name: Bump version and push tag
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                  DEFAULT_BUMP: patch
+              if: ${{ github.event_name == 'push' && ! contains(join(github.event.commits.*.message), '#skip')}}
+              uses: anothrNick/github-tag-action@a2c70ae13a881faf2b4953baaa9e49731997ab36
