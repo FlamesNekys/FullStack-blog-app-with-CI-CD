@@ -23,6 +23,10 @@ jobs:
             - name: Make build
               run: npm run build
             - name: Test backend
+              env:
+                  MONGO_URL: ${{secrets.MONGO_URL}}
+                  TEST_MONGO_URL: ${{secrets.TEST_MONGO_URL}}
+                  SECRET: ${{secrets.SECRET}}
               run: npm run test
             - name: Test frontend
               run: npm run test-frontend
