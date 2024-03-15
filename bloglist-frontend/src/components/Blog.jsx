@@ -37,9 +37,7 @@ const Blog = ({ blog, handleLike, username, removeBlog }) => {
                         </button>
                     </div>
                     <div>{blog.user.name}</div>
-                    {username === blog.user.username ? (
-                        <button onClick={() => removeBlog(blog)}>remove</button>
-                    ) : null}
+                    {username === blog.user.username ? <button onClick={() => removeBlog(blog)}>remove</button> : null}
                 </div>
             )}
         </div>
@@ -47,3 +45,4 @@ const Blog = ({ blog, handleLike, username, removeBlog }) => {
 }
 
 export default Blog
+

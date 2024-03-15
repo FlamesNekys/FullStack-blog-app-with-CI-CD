@@ -36,6 +36,14 @@ describe('Blog app', () => {
 
     describe('when logged in', () => {
         beforeEach(() => {
+            cy.request('POST', 'http://localhost:3003/api/testing/reset')
+
+            const user = {
+                username: 'test',
+                name: 'First User',
+                password: 'password',
+            }
+            cy.request('POST', 'http://localhost:3003/api/users', user)
             cy.login({ username: 'test', password: 'password' })
         })
 
@@ -54,11 +62,11 @@ describe('Blog app', () => {
 
             it('a blog can be liked', () => {
                 cy.on('uncaught:exception', (err, runnable) => {
-                    console.error('Uncaught exception:', err)
+                    console.log('Uncaught exception:', err)
                     return false
                 })
                 cy.contains('view').click()
-                cy.contains('like').click()
+                cy.contains('button', 'like').click()
                 cy.contains(1)
             })
 
