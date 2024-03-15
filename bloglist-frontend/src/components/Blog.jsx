@@ -29,7 +29,9 @@ const Blog = ({ blog, handleLike, username, removeBlog }) => {
                     <button id="hide" onClick={toggleVisibility}>
                         hide
                     </button>
-                    <div id="url">{blog.url}</div>
+                    <div id="url">
+                        <a href={blog.url}>{blog.url}</a>
+                    </div>
                     <div id="likes">
                         {blog.likes}{' '}
                         <button id="likeButton" onClick={() => handleLike(blog)}>
