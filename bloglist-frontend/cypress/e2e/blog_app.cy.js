@@ -35,15 +35,6 @@ describe('Blog app', () => {
     })
 
     describe('when logged in', () => {
-        beforeEach(() => {
-            cy.request('POST', 'http://localhost:3003/api/testing/reset')
-
-            const user = {
-                username: 'test',
-                name: 'First User',
-                password: 'password',
-            }
-            cy.request('POST', 'http://localhost:3003/api/users', user)
             cy.login({ username: 'test', password: 'password' })
         })
 
