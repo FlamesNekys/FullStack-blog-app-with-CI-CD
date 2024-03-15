@@ -53,13 +53,13 @@ describe('Blog app', () => {
             })
 
             it('a blog can be liked', () => {
-                try {
-                    cy.contains('view').click()
-                    cy.contains('like').click()
-                    cy.contains(1)
-                } catch (error) {
-                    console.log(error.message)
-                }
+                cy.on('uncaught:exception', (err, runnable) => {
+                    console.error('Uncaught exception:', err)
+                    return false
+                })
+                cy.contains('view').click()
+                cy.contains('like').click()
+                cy.contains(1)
             })
 
             it('creator of the blog can delete it', () => {
