@@ -53,6 +53,7 @@ describe('Blog app', () => {
             })
 
             it('a blog can be liked', () => {
+                cy.createBlog({ title: 'Test', author: 'Tester', url: 'none' })
                 cy.visit('http://localhost:3003')
                 cy.contains('view').click()
                 cy.contains('like').click()
