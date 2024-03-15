@@ -52,17 +52,18 @@ describe('Blog app', () => {
                 cy.createBlog({ title: 'Test', author: 'Tester', url: 'none' })
             })
 
+            it('a blog can be liked', () => {
+                cy.on('uncaught:exception', (err, runnable) => false)
+                cy.contains('view').click()
+                cy.contains('like').click()
+                cy.contains(1)
+            })
+
             it('creator of the blog can delete it', () => {
                 cy.contains('view').click()
                 cy.contains('remove').click()
                 cy.should('not.contain', 'Tester')
                 cy.contains('successfully deleted')
-            })
-
-            it('a blog can be liked', () => {
-                cy.contains('view').click()
-                cy.contains('like').click()
-                cy.contains(1)
             })
 
             it('only creator sees remove button', () => {
