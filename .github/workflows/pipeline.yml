@@ -30,9 +30,10 @@ jobs:
             - name: Test frontend
               run: npm run test-frontend
             - name: e2e tests
+              env:
+                  TEST_MONGO_URL: ${{secrets.TEST_MONGO_URL}}
               uses: cypress-io/github-action@v5
               with:
-                  env:TEST_MONGO_URL: ${{secrets.TEST_MONGO_URL}}
                   command: npm run test:e2e
                   start: npm run start:test
                   wait-on: http://localhost:3003
