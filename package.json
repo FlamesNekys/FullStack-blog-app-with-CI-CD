@@ -12,7 +12,7 @@
     "eslint": "cd bloglist-frontend && yarn lint",
     "build": "cd bloglist-frontend && yarn build",
     "test-frontend": "cd bloglist-frontend && yarn test",
-    "test:e2e": "cd bloglist-frontend && test:e2e"
+    "test:e2e": "cd bloglist-frontend && yarn test:e2e"
   },
   "keywords": [],
   "author": "",
