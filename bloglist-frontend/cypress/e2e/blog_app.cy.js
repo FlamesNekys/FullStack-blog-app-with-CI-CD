@@ -53,7 +53,7 @@ describe('Blog app', () => {
             })
 
             it('a blog can be liked', () => {
-                cy.on('uncaught:exception', (err, runnable) => false)
+                cy.visit('http://localhost:3003')
                 cy.contains('view').click()
                 cy.contains('like').click()
                 cy.contains(1)
