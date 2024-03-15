@@ -35,6 +35,7 @@ describe('Blog app', () => {
     })
 
     describe('when logged in', () => {
+        beforeEach(() => {
             cy.login({ username: 'test', password: 'password' })
         })
 
