@@ -48,7 +48,7 @@ describe('Blog app', () => {
         })
 
         describe('when blog is created', () => {
-            beforeEach(() => {
+            beforeEach(function () {
                 cy.createBlog({ title: 'Test', author: 'Tester', url: 'none' })
             })
 
