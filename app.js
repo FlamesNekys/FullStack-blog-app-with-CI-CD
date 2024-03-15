@@ -9,6 +9,7 @@ const loginRouter = require('./controllers/login');
 const middleware = require('./utils/middleware');
 const logger = require('./utils/logger');
 const mongoose = require('mongoose');
+const path = require('path');
 
 mongoose.set('strictQuery', false);
 
@@ -24,7 +25,7 @@ mongoose
         logger.error('error connecting to MongoDB:', error.message);
     });
 
-app.use(express.static('/bloglist-frontend/dist'));
+app.use(express.static(path.resolve('bloglist-frontend/dist')));
 
 app.use(cors());
 app.use(express.json());

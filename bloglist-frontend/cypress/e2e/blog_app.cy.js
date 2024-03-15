@@ -8,7 +8,7 @@ describe('Blog app', () => {
             password: 'password',
         }
         cy.request('POST', 'http://localhost:3003/api/users', user)
-        cy.visit('http://localhost:5173')
+        cy.visit('http://localhost:3003')
     })
 
     it('login page can be opened', () => {
@@ -30,9 +30,7 @@ describe('Blog app', () => {
             cy.get('#password').type('wrong')
             cy.get('#login-button').click()
 
-            cy.get('#error')
-                .should('contain', 'Wrong username or password')
-                .and('have.css', 'color', 'rgb(255, 0, 0)')
+            cy.get('#error').should('contain', 'Wrong username or password').and('have.css', 'color', 'rgb(255, 0, 0)')
         })
     })
 
@@ -101,3 +99,4 @@ describe('Blog app', () => {
         })
     })
 })
+
