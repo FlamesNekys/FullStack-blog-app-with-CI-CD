@@ -27,6 +27,10 @@ mongoose
 
 app.use(express.static(path.resolve('bloglist-frontend/dist')));
 
+app.get('/healthz', (req, res) => {
+    res.send('ok');
+});
+
 app.use(cors());
 app.use(express.json());
 app.use(middleware.reqLogger);
