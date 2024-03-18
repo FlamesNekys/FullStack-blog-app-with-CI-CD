@@ -39,14 +39,14 @@ jobs:
                   start: npm run start:test
                   wait-on: http://localhost:3003
             - name: Trigger deployment
+              if: ${{ github.event_name == 'push' && ! contains(join(github.event.commits.*.message), '#skip') }}
               env:
                   deploy_url: ${{ secrets.RENDER_DEPLOY_HOOK }}
-                  if: ${{ github.event_name == 'push' && ! contains(join(github.event.commits.*.message), '#skip') }}
               run: |
                   curl "$deploy_url"
             - name: New version deployed
               uses: rjstone/discord-webhook-notify@v1
-              if: success()
+              if: github.event_name == 'push' && success()
               with:
                   severity: info
                   details: New version successfully deployed
